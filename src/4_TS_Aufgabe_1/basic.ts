@@ -11,14 +11,14 @@ dogName = "11";
 
 let wahrFalsch: boolean = true;
 
-wahrFalsch = "hallo";
+// wahrFalsch = "hallo";
 // String geht nicht auf boolean
 wahrFalsch = false;
 
 let dayOfWeek: string = "Thursday";
-dayOfWeek = true;
+// dayOfWeek = true;
 // boolean auf string geht nicht
-dayOfWeek = 13;
+// dayOfWeek = 13;
 // number auf string geht nicht
 
 dayOfWeek = "Friday";
@@ -86,7 +86,7 @@ const c: number = 20;
 const resultTwo: number = (a + b) * c;
 console.log(resultTwo);
 
-let increment: numer = ++a;
+let increment: number = ++a;
 console.log(increment);
 
 let decrement: number = --b;
