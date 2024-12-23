@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trinkgeldrechner</title>
+    <script type="module" src="calc.ts"></script>
+    <link rel="stylesheet" href="./calc.css">
+</head>
+<body>
+    <main>
+        <section>
+            <h1>Trinkgeldrechner</h1>
+            <article>
+                <p>Wie hoch war die Rechnung?</p>
+                <div>
+                    <img src="./assets/img/currency-euro.svg" alt="euro-icon">
+                    <input type="number" id="number-1" name="number-1" required>
+                </div>
+                <p>Wie viele Menschen teilen sich die Rechnung?</p>
+                <div>
+                    <img src="./assets/img/user-group.svg" alt="people-icon">
+                    <input type="number" id="number-2" name="number-2" required>
+                </div>
+                <p>Wie war der Service?</p>
+                    <div>
+                        <img src="./assets/img/fire.svg" alt="fire-icon">
+                        <select name="service" id="service" required>
+                            <option value="placeholder">Entscheide dich für eine Option.</option>
+                            <option value="bad-service">Der Service war schlecht.</option>
+                            <option value="okay-service">Der Service war in Ordnung.</option>
+                            <option value="good-service">Der Service war richtig gut.</option>
+                        </select>
+                    </div>
+                    <form action="#">
+                        <input type="button" id="calc-button" value="calculate"/>
+                      </form>
+            </article>
+            <article class="ergebnis">
+                <h2>Ergebnis</h2>
+                <p class="trinkgeld ergebnis"></p>
+                <p class="gesamtsumme ergebnis"></p>
+                <p class="preis-pro-person ergebnis"></p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
