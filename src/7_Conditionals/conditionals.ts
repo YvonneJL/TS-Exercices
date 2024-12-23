@@ -124,7 +124,7 @@ switch (true) {
     case zweiteZahl > zufallsZahl:
     console.log("Die zweite Zahl ist größer");
 }
-
+// kein gutes Beispiel für switch
 
 
 

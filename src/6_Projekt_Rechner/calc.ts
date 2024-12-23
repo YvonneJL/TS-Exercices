@@ -9,18 +9,18 @@ function calcTrinkgeld() {
     let serviceQualitaet = document.querySelector("#service") as HTMLInputElement;
     let serviceQualitaetWert = Number(serviceQualitaet.value);
 
-    let trinkGeld = document.querySelector(".trinkgeld")!;
-    let gesamteSumme = document.querySelector(".gesamtsumme")!;
-    let preisProPerson = document.querySelector(".preis-pro-person")!;
+    let trinkGeld = document.querySelector(".trinkgeld") as HTMLParagraphElement;
+    let gesamteSumme = document.querySelector(".gesamtsumme") as HTMLParagraphElement;
+    let preisProPerson = document.querySelector(".preis-pro-person") as HTMLParagraphElement;
 
 
-    trinkGeld.innerHTML = `Das Trinkgeld beträgt: ${serviceQualitaetWert * rechnungsBetragWert}  Euro`;
+    trinkGeld.innerText = `Das Trinkgeld beträgt: ${(serviceQualitaetWert * rechnungsBetragWert).toFixed(2)} Euro`
 
     let trinkGeldNummer = serviceQualitaetWert * rechnungsBetragWert;
 
-    gesamteSumme.innerHTML = `Die Gesamtsumme beträgt: ${rechnungsBetragWert + trinkGeldNummer} Euro`;
+    gesamteSumme.innerText = `Die Gesamtsumme beträgt: ${(rechnungsBetragWert + trinkGeldNummer).toFixed(2)} Euro`;
 
-    preisProPerson.innerHTML =  `Jede Person zahlt : ${(rechnungsBetragWert + trinkGeldNummer) / anzahlPersonenWert} Euro`;
+    preisProPerson.innerText =  `Jede Person zahlt : ${((rechnungsBetragWert + trinkGeldNummer) / anzahlPersonenWert).toFixed(2)} Euro`;
 }
 
 const inputElement = document.querySelector("#calc-button") as HTMLInputElement;
