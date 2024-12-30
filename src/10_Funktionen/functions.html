@@ -5,9 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funktionen</title>
     <script type="module" src="./functions.ts"></script>
+    <link rel="stylesheet" href="./functions.css">
 </head>
 <body>
-    <h1>Funktionen</h1>
-    
+    <main class="flex">
+        <section class="hero">
+            <section class=" spielstandanzeige flex-row">
+                <article class="rahmen rahmen-home flex">
+                    <div class="flex spielestand" id="spielstand-home">0</div>
+                     <!-- <input type="number" readonly class="flex spielestand" id="spielstand-home" placeholder="0"> -->
+                    <p>Home</p>
+                </article>
+                <article class="rahmen rahmen-away flex">
+                    <div class="flex spielestand" id="spielstand-away">0</div>
+                    <!-- <input type="number" readonly class="flex spielestand" id="spielstand-away" placeholder="0"> -->
+                    <p>Away</p>
+                </article>
+            </section>
+            <section>
+                <article class="flex-row all-btns">
+                    <div>
+                        <button id="btn-home-1" class="btn btn-home">+1</button>
+                        <button id="btn-home-2" class="btn btn-home">+2</button>
+                        <button id="btn-home-3" class="btn btn-home">+3</button>
+                    </div>
+                    <div>
+                        <button id="btn-away-1" class="btn btn-away">+1</button>
+                        <button id="btn-away-2" class="btn btn-away">+2</button>
+                        <button id="btn-away-3" class="btn btn-away">+3</button>
+                    </div>
+                </article>
+                <div class="flex-row">
+                    <button id="reset">Reset</button>
+                </div>
+            </section>
+        </section>
+    </main>
 </body>
 </html>

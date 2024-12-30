@@ -108,3 +108,60 @@ function introducingMyself (vorname: string, nachname: string, geburtsort: strin
 
 introducingMyself("Yvonne", "Loder", "Heidenheim", "35", "Freiburg");
 introducingMyself("Sebastian", "Katzer", "Ravensburg", "29", "Freiburg");
+
+
+
+// & AB HIER BONUS AUFGABE
+
+
+// -->hier erstmal home Elemente ziehen und Funktion deklarieren
+const homeElement = document.querySelector("#spielstand-home") as HTMLDivElement;
+
+
+const homeElementPlusOne = document.querySelector("#btn-home-1") as HTMLButtonElement;
+const homeElementPlusTwo = document.querySelector("#btn-home-2") as HTMLButtonElement;
+const homeElementPlusThree = document.querySelector("#btn-home-3") as HTMLButtonElement;
+
+let spielstandHome:  number = 0;
+
+function plusHome (add: number) {
+    spielstandHome = spielstandHome + add;
+    homeElement.innerHTML = `${spielstandHome}`;
+}
+
+homeElementPlusOne.onclick = () => plusHome(1);
+// anonyme Funktion mit fat arrow --> um zu sagen, dass Funktion erst beim Klicken ausgeführt werden soll. .onclick darf eigentlich keine Klammern nach dem Funktionsname haben, da man so die Funktion aufruft, was hier nicht geht im Code
+homeElementPlusTwo.onclick = () => plusHome(2);
+homeElementPlusThree.onclick = () => plusHome(3);
+
+
+
+// -->hier away Elemente ziehen und Funktion deklarieren
+const awayElement = document.querySelector("#spielstand-away") as HTMLDivElement;
+
+const awayElementPlusOne = document.querySelector("#btn-away-1") as HTMLButtonElement;
+const awayElementPlusTwo = document.querySelector("#btn-away-2") as HTMLButtonElement;
+const awayElementPlusThree = document.querySelector("#btn-away-3") as HTMLButtonElement;
+
+let spielstandAway:  number = 0;
+
+function plusAway (add: number) {
+    spielstandAway = spielstandAway + add;
+    awayElement.innerHTML = `${spielstandAway}`;
+}
+
+awayElementPlusOne.onclick = () => plusAway(1);
+awayElementPlusTwo.onclick = () => plusAway(2);
+awayElementPlusThree.onclick = () => plusAway(3);
+
+
+// --> reset button 
+
+const reset = document.querySelector("#reset") as HTMLButtonElement;
+
+function resetAll() {
+    homeElement.innerHTML = `${spielstandHome = 0}`;
+    awayElement.innerHTML = `${spielstandAway = 0}`;
+}
+
+reset.onclick = () => resetAll();

@@ -1,0 +1,138 @@
+@font-face {
+    font-family: Inter;
+    src: url("./Inter-VariableFont_opsz,wght.ttf");
+}
+
+:root {
+    --color-home : rgb(85, 197, 164);
+    --color-away : rgb(154, 85, 197);
+    --color-anzeige : yellowgreen;
+    --gray-dark : gray;
+    --gray-light: rgb(205, 203, 203);
+    --my-black: rgb(29, 23, 23);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    font-family: Inter;
+}
+
+img {
+    max-width: 100%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    height: 100vh;
+    background-color: var(--my-black);
+}
+
+/* section {
+    background-color: var(--gray-dark);
+    width: 50vw;
+    
+} */
+
+.hero {
+    background-color: var(--gray-dark);
+    padding-bottom: 5rem;
+    width: 450px;
+    /* diesen Wert habe ich den dev tools entnommen-->ergibt sich aus Größe erster section. Wenn ich was innerhalb der 1. Section verändere, muss ich diesen Wert auch wieder verändern */
+    padding: 4rem;
+    border-radius: 1rem;
+}
+
+section:nth-of-type(2) {
+    padding: 0 25px;
+    /* hier gilt dasselbe wie oben */
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.spielstandanzeige {
+    gap: 3rem;
+    padding-bottom: 2rem;
+}
+
+.rahmen {
+    height: 18rem;
+    width: 18rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.rahmen-home {
+    border: 3px solid var(--color-home);
+}
+
+.rahmen-away {
+    border: 3px solid var(--color-away);
+}
+
+.spielestand {
+    background-color: var(--my-black);
+    height: 15rem;
+    width: 15rem;
+    border-radius: 1rem;
+    font-size: 7rem;
+    color : var(--color-anzeige);
+}
+
+/* .spielestand::placeholder {
+    color : var(--color-anzeige);
+    text-align: center;
+} */
+
+p {
+    position: absolute;
+    padding:  0 1rem;
+    bottom: -1rem;
+    color: var(--gray-light);
+    background-color: var(--gray-dark);
+    font-size: 1.7rem;
+}
+
+.all-btns {
+    justify-content: space-between;
+}
+
+.btn {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 0.5rem;
+    margin: 2rem 0.2rem;
+    color: var(--gray-light);
+}
+
+.btn-home {
+    background-color: var(--color-home);
+}
+
+.btn-away {
+    background-color: var(--color-away);
+}
+
+#reset {
+    padding: 0.4rem 1.7rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: var(--my-black);
+    background-color: var(--gray-light);
+}
