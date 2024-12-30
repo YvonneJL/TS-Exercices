@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        @apply p-0 m-0 box-border;
+    }
+    div {
+        @apply grid grid-cols-4;
+    }
+    button {
+        @apply w-20 h-20 bg-gray-300 shadow border-gray-400;
+    }
+    .btn-light-green {
+        @apply bg-green-300;
+    }
+}

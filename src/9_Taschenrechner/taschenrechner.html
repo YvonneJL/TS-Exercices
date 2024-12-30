@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taschenrechner</title>
+    <link rel="stylesheet" href="./assets/css/taschenrechner.css">
+    <script type="module" src="./taschenrechner.ts"></script>
+</head>
+<body>
+    <section class=" h-screen">
+        <article class="w-80 mx-auto my-40">
+            <!-- ! Warum ist Taschenrechner nicht in der Mitte des screens?x-Achse -->
+            <div>
+                <input class="h-20 w-80 bg-gray-200 shadow border-gray-400" type="number" readonly name="rechnung" id="calculate">
+            </div>
+            <div>
+                <button id="delete">C</button>
+                <button>?</button>
+                <button>%</button>
+                <button class="btn-light-green" id="plus">+</button>
+            </div>
+            <div>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button class="btn-light-green" id="minus">-</button>
+            </div>
+            <div>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button class="btn-light-green" id="multiply">x</button>
+            </div>
+            <div>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button class="btn-light-green" id="divide">/</button>
+            </div>
+            <div class="grid grid-cols-4">
+                <button>0</button>
+                <button>.</button>
+                <button class="w-40 col-start-3 col-end-5 bg-green-400 text-white;" id="result">=</button>
+            </div>
+        </article>
+    </section>
+</body>
+</html>
