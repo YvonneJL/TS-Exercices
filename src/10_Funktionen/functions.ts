@@ -117,10 +117,11 @@ introducingMyself("Sebastian", "Katzer", "Ravensburg", "29", "Freiburg");
 // -->hier erstmal home Elemente ziehen und Funktion deklarieren
 const homeElement = document.querySelector("#spielstand-home") as HTMLDivElement;
 
+const homeElementPlusOne = document.querySelector<HTMLButtonElement>("#btn-home-1");
+const homeElementPlusTwo = document.querySelector<HTMLButtonElement>("#btn-home-2");
+const homeElementPlusThree = document.querySelector<HTMLButtonElement>("#btn-home-3");
 
-const homeElementPlusOne = document.querySelector("#btn-home-1") as HTMLButtonElement;
-const homeElementPlusTwo = document.querySelector("#btn-home-2") as HTMLButtonElement;
-const homeElementPlusThree = document.querySelector("#btn-home-3") as HTMLButtonElement;
+
 
 let spielstandHome:  number = 0;
 
@@ -129,10 +130,18 @@ function plusHome (add: number) {
     homeElement.innerHTML = `${spielstandHome}`;
 }
 
-homeElementPlusOne.onclick = () => plusHome(1);
+if (homeElementPlusOne !== null) {
+    homeElementPlusOne.onclick = () => plusHome(1);
+}
 // anonyme Funktion mit fat arrow --> um zu sagen, dass Funktion erst beim Klicken ausgeführt werden soll. .onclick darf eigentlich keine Klammern nach dem Funktionsname haben, da man so die Funktion aufruft, was hier nicht geht im Code
-homeElementPlusTwo.onclick = () => plusHome(2);
-homeElementPlusThree.onclick = () => plusHome(3);
+if (homeElementPlusTwo !== null) {
+    homeElementPlusTwo.onclick = () => plusHome(2);
+}
+
+if (homeElementPlusThree !== null) {
+    homeElementPlusThree.onclick = () => plusHome(3);
+}
+
 
 
 
@@ -142,6 +151,8 @@ const awayElement = document.querySelector("#spielstand-away") as HTMLDivElement
 const awayElementPlusOne = document.querySelector("#btn-away-1") as HTMLButtonElement;
 const awayElementPlusTwo = document.querySelector("#btn-away-2") as HTMLButtonElement;
 const awayElementPlusThree = document.querySelector("#btn-away-3") as HTMLButtonElement;
+
+
 
 let spielstandAway:  number = 0;
 
