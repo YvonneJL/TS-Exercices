@@ -6,11 +6,11 @@
     * {
         @apply p-0 m-0 box-border;
     }
-    div {
+    article {
         @apply grid grid-cols-4;
     }
-    button {
-        @apply w-20 h-20 bg-gray-300 shadow border-gray-400 text-2xl;
+    div {
+        @apply w-20 h-20 bg-gray-300 shadow border-gray-400 text-2xl flex justify-center items-center;
     }
     .btn-light-green {
         @apply bg-green-300;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taschenrechner nachgebaut</title>
+    <link rel="stylesheet" href="./calc.css">
+    <script type="module" src="./calc.ts"></script>
+</head>
+<body>
+    <main>
+        <section class="w-80 mx-auto my-40">
+            <div class="h-20 w-80 bg-gray-200 shadow border-gray-400 flex justify-end text-5xl pt-8" id="ergebnis">
+            </div>
+            <article>
+                <div id="delete">C</div>
+                <div class="">?</div>
+                <div class="">%</div>
+                <div class="numbers btn-light-green">+</div>
+            </article>
+            <article>
+                <div class="numbers">1</div>
+                <div class="numbers">2</div>
+                <div class="numbers">3</div>
+                <div class="numbers btn-light-green">-</div>
+            </article>
+            <article>
+                <div class="numbers">4</div>
+                <div class="numbers">5</div>
+                <div class="numbers">6</div>
+                <div class="numbers btn-light-green">*</div>
+            </article>
+            <article>
+                <div class="numbers">7</div>
+                <div class="numbers">8</div>
+                <div class="numbers">9</div>
+                <div class="numbers btn-light-green">/</div>
+            </article>
+            <article class="grid grid-cols-4">
+                <div class="numbers">0</div>
+                <div class="">.</div>
+                <div class="w-40 col-start-3 col-end-5 bg-green-400 text-white;" id="result">=</div>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
