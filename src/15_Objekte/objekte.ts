@@ -754,6 +754,19 @@ type Singer = {
     genre: string;
 };
 
+
+// type Singer = {
+//   name: string;
+//   country: string;
+//   period_active: {
+//   start: number;
+//   end: number | string;
+//   extra?: number;
+//   }
+//   genre: string;
+// };
+// .. Schreibweise oben auch möglich. Statt 2 Typen, alles in einem.
+
 const singers: Singer[] = [
     { name: 'The Beatles', 
       country: 'United Kingdom', 
@@ -774,12 +787,13 @@ const singers: Singer[] = [
 
 
 //..Sortiere die Bands aus dem Code-Snippet alphabetisch nach Namen.
+// ! Achtung, .sort() mutiert-->umgehen zB mit [...singers] oder .slice(), um array zu kopieren
 
-singers.sort(function (a, b) {
+singers.sort(function (a: Singer, b: Singer) {
     // return a.name.localeCompare(b.name);
     // oberes macht selbes wie ich hier im if-Block gemacht habe
     // if-Block, um es verständlicher zu machen
-    console.log(a, b);
+    console.log(a.name, b.name);
     // was die Sortierfunktion macht
     if (a.name < b.name) {
         return -1
@@ -813,3 +827,31 @@ console.log(singers);
 // mit a.toLocaleCompare(b) nur für Strings möglich
 // if Block imemr gleich
 // das .sort() liefert immer eine Zahl (-1/1/0-->testet welcher Wert größer ist und sortiert entsprechend)
+
+
+// ..nach genre sortieren
+singers.sort((a, b) => {
+  // {return a.genre.localeCompare(b.genre)});
+// console.log(singers);
+if (a.genre > b.genre) {
+  return 1;
+} else if (a.genre < b.genre){
+  return 1
+} 
+  return 0
+});
+// da überall return steht muss else nicht explizit ausgewiesen werden, es reicht das return 0
+// ..wenn ich anders herum sortieren möchte, dann a und b andersrum ><
+
+console.log(singers);
+
+
+singers.find((singer) => {
+  console.log(singer.name);
+  return singer.name === "Madonna"
+})
+
+singers.filter((singer) => {
+  console.log(singer.name);
+  return singer.name === "Madonna"
+})
