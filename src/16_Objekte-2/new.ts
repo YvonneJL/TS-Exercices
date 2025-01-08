@@ -140,7 +140,10 @@ favBands.forEach((values, key) => {
     // key kann man weglassen, wenn man es nicht benutzt. Values kann ich nicht weglassen, falls ich an key möchte, da key sonst als value gelesen wird
     // forEach greift bei Maps immer auf die values und den key in dieser Reihenfolge zu, also die 2 Parameter, die man bestimmt, stehen für die values und die keys
     const filteredValues = values.filter(element => element.length >= 12);
-    console.log(`Band: ${key}, Members: ${filteredValues}`);
+    // für die Längenangabe muss ich ja auf die einzelnen Elemente zugreifen können, das mache ich auch mit forEach, hier in der nächsten Zeile
+    filteredValues.forEach((member) => {
+        console.log(`Band: ${key}, Members: ${filteredValues}, Length: ${member.length}`);
+});
 });
 
 
