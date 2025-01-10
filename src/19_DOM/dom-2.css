@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    background-color: rgb(46, 37, 37);
+    height: 5vh;
+    padding: 0 2%;
+}
+
+.navo {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    /* background-color: aqua; */
+}
+
+.btn-background {
+    background-color: yellowgreen;
+    border: none;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-1 {
+    display: flex;
+    gap: 15%;
+}

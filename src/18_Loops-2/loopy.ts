@@ -162,3 +162,43 @@ if (button && output) {
     output.innerHTML = `${addedNumbers}`;
 }) 
 };
+
+
+
+
+//& ------------------------------AB HIER LOOP BONUS AUFGABEN--------------------------------
+//& Loops-TS-Level-3_2
+console.log("Loops-TS-Level-3_2");
+
+
+
+
+
+//..Du hast ein Array aus Zahlen und möchtest herausfinden, durch welche Zahlen sie (außer durch eins und sich selbst) teilbar sind.
+//..Schreibe das Ergebnis in dein HTML
+
+
+// Schleife in Schleife verschachteln
+// eine Schleife teilt die eine Zahl aus dem Array bis am Ende zu sich selbst durch alle Zahlen und spuckt aber nur die raus, bei denen % === 0
+// ich glaube das ist die innere Schleife
+// eine andere Schleife gibt noch das Ergebnis aus was beim teilen entsteht?????
+
+const numbers: number[] = [5, 22, 15, 100, 55];
+
+
+for (let i = 0; i <= numbers[i]; i++) {
+    
+        console.log(numbers);
+        console.log(i);
+        console.log(numbers[i]);
+        const rechnung: number = numbers[i] / i;
+        console.log(rechnung);
+    
+    
+};
+//! numbers[i] / i teilt jetzt nur durch den Zählwert, der gerade durchlaufen wird, also nur durch einen Wert
+//! Viell muss hier die Doppelschleife hin?!
+
+
+
+// if (numbers[i] % i == 0 ) {

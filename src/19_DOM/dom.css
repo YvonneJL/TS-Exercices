@@ -1,0 +1,56 @@
+h2 {
+    color: rgb(44, 151, 160);
+}
+
+
+/* ! von folgender Aufgabe haben die Styles in diesem Dokument nicht gegriffen */
+&Dom-Elements-TS-Level-2_3
+
+/* nav {
+    background-color: red;
+} */
+
+.navo {
+    text-decoration: none;
+    color: black;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-1 {
+    display: flex;
+    gap: 10%;
+}
+
+/* & DOM-TS-Level-1_3 */
+
+.img {
+    object-fit: contain;
+    height: 200px;
+}
+
+
+
+/* &  Dom-Elements-TS-Level-1_2*/
+
+.style {
+    display: inline-block;
+    border-radius: 5px;
+    background: #46b18a;
+    color: white;
+    padding: 5px;
+}
+
+.example {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.change-background{
+    background-color: rgb(64, 64, 177);
+}
