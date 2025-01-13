@@ -1,5 +1,3 @@
-import { eachWeekOfInterval } from "date-fns";
-
 //& Loops-TS-Level-1_10
 console.log("Loops-TS-Level-1_10");
 
