@@ -348,17 +348,19 @@ function translate () {
         // anfangs auf leer
         let morseCode = "";
 
-        // 
-        for (let userInput of inputValue) {
-            const translate = morseAlphabet.find(item => item.letter === userInput);
+        // Schleife ist nötig, um durch jeden Buchstaben, der im Inputfeld eingegeben wurde zu gehen
+        for (let singleLetterOfUserInput of inputValue) {
+            // hier finde ich mit .find() zu jedem eingegebenen Buchstaben des users das passende Objekt (mit Buchtsaben und passender Morseübersetzung) und speichere das Ganze in einer Variablen
+            const objectOfLetterOfUserInput = morseAlphabet.find(item => item.letter === singleLetterOfUserInput);
             // if else nur weil user auch unbekannte Zeichen eingeben kann
             // nur um das abzufangen
-            if (translate) {
-                morseCode += translate.morseCode;
+            // hier die zuvor definierte let Variable mit Inhalt füllen, also die Übersetzung, die raus kommen soll --> pro Buchstabe (in Schleife) wird value vom key morseCode hinzugefügt und im output angezeigt
+            if (objectOfLetterOfUserInput) {
+                morseCode += objectOfLetterOfUserInput.morseCode;
             } else {
                 morseCode += "? "; 
-            }
-        }
+            };
+        };
         // ausserhalb der Schleife aber innerhalb der if Abfrage von oben
         // Erstellen des p Elements, in das die Übersetzung soll
         const pElement = document.createElement("p");
