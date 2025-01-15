@@ -29,12 +29,14 @@ console.log(`addProductToService : ${addProductToService("Yvi", "tea")}`);
 //..Für den Ordner product soll es also so aussehen:
 
 
-import {createProduct as createProductFromIndex, addProductToService as addProductToServiceFromIndex} from './Product/index.ts';
+
+//wenns die index.ts ist, brauchts den exakten Pfad nicht?!?!?!?!?!
+import {createProduct as createProductFromIndex, addProductToService as addProductToServiceFromIndex} from './Product';
 console.log(createProductFromIndex("coffee", 4.5));
 console.log(addProductToServiceFromIndex("Yvi", "tea"));
 
 
-import {createOrder as createOrderFromIndex, addOrderToService as addOrderToServiceFromIndex} from "./Order/index.ts";
+import {createOrder as createOrderFromIndex, addOrderToService as addOrderToServiceFromIndex} from "./Order";
 console.log(createOrderFromIndex(["coffee", "tea", "lemonade"]));
 console.log(addOrderToServiceFromIndex("Yvi", "6"));
 

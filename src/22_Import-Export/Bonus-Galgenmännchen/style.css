@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        @apply p-0 m-0 box-border;
+    }
+    button {
+        @apply w-10 h-10 border-2 border-purple-500 rounded-2xl text-orange-400 bg-purple-500;
+    }
+};
