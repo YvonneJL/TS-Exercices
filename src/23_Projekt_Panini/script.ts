@@ -54,25 +54,41 @@ if (nameInput && countryInput && musicInput && favSongInput && lastReleaseInput 
         const firstReleaseValue = firstReleaseInput.value;
         const urlValue = urlInput.value;
 
+              // Objekte bestimme, die pro Klick in dem zuvor definierten Array gespeichert werden sollen
+    const femaleMusicArtist: FemaleMusicArtists = {
+        name: nameValue,
+        country: countryValue,
+        music: musicValue,
+        favouriteSong: favSongValue,
+        lastAlbumRelease: Number(lastReleaseValue),
+        firstAlbumRelease: Number(firstReleaseValue),
+        urlPicture: urlValue,
+    };
+    //oben erstelltes Objekt dem zuvor erstellen Array hinzufügen mit .push()
+    collection.push(femaleMusicArtist);
+    console.log(femaleMusicArtist);
+    console.log(collection);
 
-        // Objekte bestimme, die pro Klick in dem zuvor definierten Array gespeichert werden sollen
-        const femaleMusicArtist: FemaleMusicArtists = {
-            name: nameValue,
-            country: countryValue,
-            music: musicValue,
-            favouriteSong: favSongValue,
-            lastAlbumRelease: Number(lastReleaseValue),
-            firstAlbumRelease: Number(firstReleaseValue),
-            urlPicture: urlValue,
-        };
-        //oben erstelltes Objekt dem zuvor erstellen Array hinzufügen mit .push()
-        collection.push(femaleMusicArtist);
-        console.log(femaleMusicArtist);
-        console.log(collection);
+    
+
+     //!hier das Ausgeklammerte als Schleife, ist aber nicht so schön
+        // const keys = Object.keys(femaleMusicArtist)
+        // const values = Object.values(femaleMusicArtist)
+        
+        // for (let i=0; i<keys.length; i++) {
+        //     let p = document.createElement("p");
+        //     const key = keys[i];
+        //     const value = values[i].toString();
+        //     p.textContent = value;
+        //     p.className = "text-white text-[12px]";
+        //     divCard.appendChild(p);
+        // }
+
+
 
         // div erstellen, das die Sammelkarte wird, Ort bestimmen und den Hintergrund auslesen
         const divCard = document.createElement("div");
-        divCard.className =`bg-[url('${urlValue}')]`;
+        divCard.style.backgroundImage =`url('${urlValue}')`;
         output.appendChild(divCard);
 
         //einzelne Eigenschaften hinzufügen
@@ -106,4 +122,5 @@ if (nameInput && countryInput && musicInput && favSongInput && lastReleaseInput 
         pFirstRelease.className = "text-white text-[12px]";
         divCard.appendChild(pFirstRelease);
     });
+
 };
