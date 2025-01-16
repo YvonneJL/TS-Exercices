@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panini Sammelkarten Projekt</title>
+    <script defer type="module" src="./script.ts"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-blue-800 p-5">
+    <main>
+        <h1 class="text-4xl my-10 text-center text-white">Add a female music artist to your collection</h1>
+        <form class="mx-20 mb-16">
+            <article class="flex justify-between gap-2 mb-5">
+                <div class="flex-1">
+                    <p class="text-white">What is the artist´s/band´s name?</p>
+                    <input id="input-name" class="bg-red-300 w-[100%] border-2 border-red-400 rounded-lg py-2" type="text">
+                </div>
+                <div class="flex-1">
+                    <p class="text-white">Where is the artist from?</p>
+                    <input id="input-country" class="bg-red-300 w-[100%] border-2 border-red-400 rounded-lg py-2" type="text">
+                </div>
+                </article>
+                <article class="flex justify-between gap-2 mb-5">
+                    <div class="flex-1">
+                        <p class="text-white">What kind of music does the artist make?</p>
+                        <input id="input-music" class="bg-red-300 w-[100%] border-2 border-red-400 rounded-lg py-2" type="text">
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-white">What is your favourite song from the artist?</p>
+                        <input id="input-fav-song" class="bg-red-300 w-[100%] border-2 border-red-400 rounded-lg py-2" type="text">
+                    </div>
+                </article>
+            </article>
+            <article class="flex justify-between gap-2 mb-5">
+                <div class="flex-1">
+                    <p class="text-white">In which year did the artist release their last album?</p>
+                    <input id="input-last-release" class="bg-red-300 w-[100%] border-2 border-red-400 rounded-lg py-2" type="number" min="1900" max="2100">
+                </div>
+                <div class="flex-1">
+                    <p class="text-white">In which year did the artist release their first album?</p>
+                    <input id="input-first-release" class="bg-red-300 w-[100%] border-2 border-red-400 rounded-lg py-2" type="number" min="1900" max="2100">
+                </div>
+            </article>
+            <div class="mb-5">
+                <p class="text-white">Put in an URL to a picture of the artist</p>
+                <input id="input-url" class="bg-red-300 w-[100%] border-2 border-red-400 rounded-lg py-2" type="text">
+            </div>
+            <div class="flex justify-center">
+                <button id="button-submit" class="bg-red-400 border-2 border-red-400 rounded-lg p-4 text-white">Sammelkarte erstellen</button>
+            </div>
+        </form>
+        <section id="output" class="flex flex-wrap gap-10">
+        </section>
+    </main>
+</body>
+</html>
