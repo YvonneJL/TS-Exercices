@@ -150,8 +150,10 @@ enum ClothingColor {
 //..Gehe in einer Schleife das Array durch und erstelle Buttons mit der jeweiligen Farbe als Hintergrundfarbe .
 
 
-const allColors : ClothingColor[] = [ClothingColor.Gelb, ClothingColor.Orange, ClothingColor.Pink, ClothingColor.Blau, ClothingColor.Lila, ClothingColor.Grau];
+const allColors : ClothingColor[] = 
+[ClothingColor.Gelb, ClothingColor.Orange, ClothingColor.Pink, ClothingColor.Blau, ClothingColor.Lila, ClothingColor.Grau];
 console.log(allColors);
+
 
 const sectionElement = document.querySelector("#hero");
 //die Schleife läuft hier zweimal
