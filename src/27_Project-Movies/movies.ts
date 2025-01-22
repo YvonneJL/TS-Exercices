@@ -1135,6 +1135,7 @@ if (yUpBtn && yDownBtn && bestRateBtn && movieSection) {
         putMoviesInDom(sortedDown);
     });
 
+    
     bestRateBtn.addEventListener("click", ()=> {
         const sortedBestRate = movies.slice().sort((a, b)=> Number(b[5])-Number(a[5]));
         movieSection.innerHTML = "";
