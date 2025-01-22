@@ -1,19 +1,6 @@
 //& Project-TS Movies for you
 
 
-//..✨ Bonus
-
-//..Erstelle die Genres mit Hilfe von einem zweiten array-loop.
-//..Erstelle ein schöneres Design.
-//..Erweitere deine Anwendung um beliebige weitere Funktionen, diese könnten z.B. sein:
-    //..Filter nach Genre
-    //..“Film not found”- Ansicht
-    //..Suche nach Jahr
-    //..Möglichkeit, einen neuen Film hinzuzufügen.
-
-    //übers Array und die Zahl rauspicken-->vielleicht Zahlen rausholen und in neuem Array speichern
-    //über dieses Array itterieren und sortieren nach highest/lowest
-
 //ein Array aus mehreren Arrays, in dem auch Array steckt
 const movies: [string, string, string, string, string[], string][] = [
     [
@@ -1017,10 +1004,8 @@ const movies: [string, string, string, string, string[], string][] = [
         '8.3'
     ]
 ];
-
 console.log(movies[0][0]);
 //Zugriff auf Array und dann erster Eintrag in Subarray
-
 
 
 //& Elemente aus der DOM ziehen
@@ -1050,10 +1035,7 @@ function putMoviesInDom (movieList: [string, string, string, string, string[], s
         const movieLength = document.createElement("p");
         movieLength.textContent = movieList[i][3];
         const movieGenre = document.createElement("p");
-        //hier wird "undefinded ausgespuckt, bei Filmen, die kein 2tes Genre haben"
-        //! Wie verhindere ich das?
-        //forEach
-        movieGenre.textContent += `${movieList[i][4][0]}, ${movieList[i][4][1]}`
+        movieGenre.textContent += `${movieList[i][4]}`
         const movieRating = document.createElement("p");
         movieRating.textContent = movieList[i][5];
         movieDiv.appendChild(movieName)
@@ -1068,34 +1050,38 @@ putMoviesInDom(movies);
 
 
 
-
-
 //..Im Suchfeld kann ein Begriff eingegeben werden
-
 //..→ nach diesem Begriff wird in den Feldern Name, Erscheinungsjahr, Regisseur:in gesucht
-    //..(die anderen Felder können erstmal ignoriert werden)
+
 
 //& Suche nach Inputfeld
-//! case sensitive fehlt
+
 // mit .filter() gearbeitet, da .filter() dann die Arrays ausspuckt, die gesucht werden
 // mit .map() zB kommt nur der boolean von .includes() zurück
 if (searchBtn && inputElement && movieSection) {
     searchBtn.addEventListener("click", ()=> {
-        let inputValue = inputElement.value;
+        let inputValue = inputElement.value.toLowerCase();
         let searchResults = movies.filter((movie) => {
-            return movie.includes(inputValue)
+            //----> mit JSON.stringify(ARRAY) mache ich einen Array zu EINEM String
+            // so klappt dann toLowerCas() und auch das Suchen nach Genre
+            return JSON.stringify(movie).toLowerCase().includes(inputValue)
         });
         console.log(searchResults);
-        if (searchResults) {
+        //hier muss ich > 0, da zumindest ein leeres Array gefunden wird
+        // damit else funktioniert, muss im if Teil stehen, dass die Array Länge, also der Inhalt mind. größer 0 oder >=1 sein soll
+        if (searchResults.length > 0) {
             movieSection.textContent = "";
             
             putMoviesInDom(searchResults);
-        };
-        });
+        } else {
+            console.log("no");
+            movieSection.textContent = "";
+            const notFoundParagraph = document.createElement("p");
+            notFoundParagraph.textContent = "Leider keinen Film mit diesem Namen gefunden. Achte bitte auf die Groß- und Kleinschreibung"
+            movieSection.appendChild(notFoundParagraph);
+        }; inputElement.value = "";
+        }); 
     };
-
-
-
 
 
 
@@ -1112,8 +1098,8 @@ if (searchBtn && inputElement && movieSection) {
     //..map()
 
 
+    //!Wie kann ich wenn ich schon nach etwas gesucht habe, dann erst sortieren (bisher werden mir dann wieder alle Filme angezeigt)
 
-    
     //& alle Click-Events ----- sortieren
 if (yUpBtn && yDownBtn && bestRateBtn && movieSection) {
 
@@ -1146,5 +1132,44 @@ if (yUpBtn && yDownBtn && bestRateBtn && movieSection) {
 
 
 
+//..✨ Bonus
 
-    //! WICHTIG ZU ÜBERLEGEN NACH WLECHEM ARRAY DANN DAS INUT FELD SUCHT; falls vorher schon sortiert wurde, ist ja das andere wieder aus der dom gelöscht...
+//..Erstelle die Genres mit Hilfe von einem zweiten array-loop.
+//! weiß nicht was damit gemeint ist
+
+
+//..Möglichkeit, einen neuen Film hinzuzufügen.
+
+    //input Felder auslesen und alles in ein Array packen
+    //dieses Array dann in movies pushen
+
+const nameInput = document.querySelector<HTMLInputElement>("#title");
+const yearInput = document.querySelector<HTMLInputElement>("#year");
+const regInput = document.querySelector<HTMLInputElement>("#regisseur");
+const dauerInput = document.querySelector<HTMLInputElement>("#dauer");
+const ratingInput = document.querySelector<HTMLInputElement>("#rating");
+const genreSelect = document.querySelector<HTMLSelectElement>("#genre");
+const addButton = document.querySelector("#add");
+
+//let newMovie: [string, string, string, string, string[], string];
+let genreNewMovie = [];
+
+if (nameInput && yearInput && regInput && dauerInput && ratingInput && genreSelect && addButton && movieSection) {
+    addButton.addEventListener("click", (event)=> {
+        event.preventDefault();
+        const nameValue = nameInput.value;
+        const yearValue = yearInput.value;
+        const regValue = regInput.value;
+        const dauerValue = dauerInput.value;
+        const ratingValue = ratingInput.value;
+        const genreValue = genreSelect.value;
+        genreNewMovie.push(genreValue);
+        let newMovie: [string, string, string, string, string[], string] = [nameValue, yearValue, regValue, dauerValue, genreNewMovie, ratingValue]
+        console.log(newMovie);
+        movies.push(newMovie);
+
+        movieSection.innerHTML = "";
+        putMoviesInDom(movies);
+    });
+};
+

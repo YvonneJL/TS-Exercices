@@ -22,6 +22,32 @@
         </section>
         <section id="find" class="flex flex-wrap flex-row justify-around pb-10">
         </section>
+        <section id="add-movie">
+            <h2 class="text-xl font-bold text-center pb-5 text-yellow-50">Add your own movie</h2>
+            <form class="flex flex-col items-center">
+                <p class="text-yellow-50">Title</p>
+                <input class="rounded-3xl w-64 h-10 mb-5"  type="text" name="title" id="title">
+                <p class="text-yellow-50">Year</p>
+                <input class="rounded-3xl w-64 h-10 mb-5" type="text" name="year" id="year">
+                <p class="text-yellow-50">Regisseur</p>
+                <input class="rounded-3xl w-64 h-10 mb-5" type="text" name="regisseur" id="regisseur">
+                <p class="text-yellow-50">Dauer</p>
+                <input class="rounded-3xl w-64 h-10 mb-5" type="text" name="dauer" id="dauer" placeholder="xh xmin">
+                <p class="text-yellow-50">Genre</p>
+                <select class="rounded-3xl w-64 h-10 mb-5" name="genre" id="genre">
+                    <option value="action">Action</option>
+                    <option value="drama">Drama</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="western">Western</option>
+                    <option value="Film-Noir">Film-Noir</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="fantasy">Fantasy</option>
+                </select>
+                <p class="text-yellow-50">rating ImdB</p>
+                <input class="rounded-3xl w-64 h-10 mb-5" type="text" name="rating" id="rating">
+                <button class="text-yellow-50 w-32 h-10 rounded-3xl bg-yellow-500" id="add">Add</button>
+            </form>
+        </section>
     </main>
 </body>
 </html>
