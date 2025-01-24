@@ -33,25 +33,103 @@ console.log("fetch-level-3_1");
     isNiche: boolean
     }
 
-const sectionQ = document.querySelector("#questions");
+    const sectionQ = document.querySelector("#questions");
+    const submitButton =  document.querySelector("button");
 
-fetch("https://the-trivia-api.com/v2/questions").then((response)=> {
-    return response.json().then((data: Question[])=> {
-        data.map((questionData)=> {
+
+
+    //! Hier Syntax mit async und await
+    //! Async verdeutlicht, dass dies eine asynchrone Funktion ist, brauche ich einfach als keyword, wenn ich await benutze
+    //! Await sagt, dass TS das fetchen erst einmal abwarten soll bevor es die anderen Sachen durchführt
+    async function putAllAnswersTogether () {
+        const questionsResponseOnly = await fetch("https://the-trivia-api.com/v2/questions");
+        const questionsData: Question[] = await questionsResponseOnly.json();
+        let counter = 0;
+        questionsData.forEach((questionData)=> {
             const divAllQ = document.createElement("div");
             sectionQ?.appendChild(divAllQ);
 
             const qP = document.createElement("p");
             qP.textContent = questionData.question.text;
+            qP.className = "font-bold pb-10"
             divAllQ.appendChild(qP);
+            divAllQ.className = "rounded-md bg-yellow-50 p-3"
 
             const rightAnswer = document.createElement("label");
-            rightAnswer.setAttribute("id", questionData.correctAnswer);
+            rightAnswer.setAttribute("for", questionData.correctAnswer.toLowerCase());
+            const wrongAnswer1 = document.createElement("label");
+            wrongAnswer1.setAttribute("id", questionData.incorrectAnswers[0]);
+            const wrongAnswer2 = document.createElement("label");
+            wrongAnswer1.setAttribute("id", questionData.incorrectAnswers[1]);
+            const wrongAnswer3 = document.createElement("label");
+            wrongAnswer1.setAttribute("id", questionData.incorrectAnswers[2]);
+
             rightAnswer.textContent = questionData.correctAnswer;
-            const rightAnswerCheck = document.createElement("input");
-            rightAnswerCheck.setAttribute("type", "checkbox");
-            divAllQ.appendChild(rightAnswer);
-            divAllQ.appendChild(rightAnswerCheck);
-        })
-    })
-})
+            wrongAnswer1.textContent = questionData.incorrectAnswers[0];
+            wrongAnswer2.textContent = questionData.incorrectAnswers[1];
+            wrongAnswer3.textContent = questionData.incorrectAnswers[2];
+
+            const rightAnswerRadio = document.createElement("input");
+            rightAnswerRadio.setAttribute("type", "radio");
+            rightAnswerRadio.setAttribute("id", questionData.correctAnswer.toLowerCase());
+            rightAnswerRadio.setAttribute("name", questionData.question.text.toLowerCase());
+            const wrongAnswer1Radio = document.createElement("input");
+            wrongAnswer1Radio.setAttribute("type", "radio");
+            wrongAnswer1Radio.setAttribute("id", questionData.incorrectAnswers[0].toLowerCase());
+            wrongAnswer1Radio.setAttribute("name", questionData.question.text.toLowerCase());
+            const wrongAnswer2Radio = document.createElement("input");
+            wrongAnswer2Radio.setAttribute("type", "radio");
+            wrongAnswer2Radio.setAttribute("name", questionData.question.text.toLowerCase());
+            wrongAnswer2Radio.setAttribute("id", questionData.incorrectAnswers[1].toLowerCase());
+            const wrongAnswer3Radio = document.createElement("input");
+            wrongAnswer3Radio.setAttribute("type", "radio");
+            wrongAnswer3Radio.setAttribute("name", questionData.question.text.toLowerCase());
+            wrongAnswer3Radio.setAttribute("id", questionData.incorrectAnswers[2].toLowerCase());
+            
+
+            const divRightAnswer = document.createElement("div");
+            divAllQ.appendChild(divRightAnswer);
+            divRightAnswer.appendChild(rightAnswerRadio);
+            divRightAnswer.appendChild(rightAnswer);
+            const divWrongAnswer1 = document.createElement("div");
+            divAllQ.appendChild(divWrongAnswer1);
+            divWrongAnswer1.appendChild(wrongAnswer1Radio);
+            divWrongAnswer1.appendChild(wrongAnswer1);
+            const divWrongAnswer2 = document.createElement("div");
+            divAllQ.appendChild(divWrongAnswer2);
+            divWrongAnswer2.appendChild(wrongAnswer2Radio);
+            divWrongAnswer2.appendChild(wrongAnswer2);
+            const divWrongAnswer3 = document.createElement("div");
+            divAllQ.appendChild(divWrongAnswer3);
+            divWrongAnswer3.appendChild(wrongAnswer3Radio);
+            divWrongAnswer3.appendChild(wrongAnswer3);
+        });
+
+    };
+    putAllAnswersTogether();
+    
+
+
+//! Folgend Syntax mit .then
+// const sectionQ = document.querySelector("#questions");
+
+// fetch("https://the-trivia-api.com/v2/questions").then((response)=> {
+//     return response.json().then((data: Question[])=> {
+//         data.forEach((questionData)=> {
+//             const divAllQ = document.createElement("div");
+//             sectionQ?.appendChild(divAllQ);
+
+//             const qP = document.createElement("p");
+//             qP.textContent = questionData.question.text;
+//             divAllQ.appendChild(qP);
+
+//             const rightAnswer = document.createElement("label");
+//             rightAnswer.setAttribute("id", questionData.correctAnswer);
+//             rightAnswer.textContent = questionData.correctAnswer;
+//             const rightAnswerCheck = document.createElement("input");
+//             rightAnswerCheck.setAttribute("type", "radio");
+//             divAllQ.appendChild(rightAnswer);
+//             divAllQ.appendChild(rightAnswerCheck);
+//         })
+//     })
+// })
