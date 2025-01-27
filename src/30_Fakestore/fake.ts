@@ -11,6 +11,7 @@ const productCategoryElButton = document.querySelector("#category-1");
 const productCategoryJeButton = document.querySelector("#category-2");
 const productCategoryMeButton = document.querySelector("#category-3");
 const productCategoryWoButton = document.querySelector("#category-4");
+const productCategoryAllButton = document.querySelector("#category-0");
 
 
 
@@ -55,8 +56,12 @@ const shopProductData = await getShopProducts();
 //---ist das wirklich nötig? 
 //---oder würde ich die Funktion sowieso in der Schleife schreiben mit i, da die Funktion ja auch wieder dieselbe ist..
 //---ansonstena ußerhalb mit querySelectorAll? bzw. Schleife durchs Array aus Buttons
+//! War jetzt hier nicht nötig--> addToCart noch innerhab des Loops gemacht
 let allButtonAddToCart: HTMLButtonElement[] = [];
 
+// Variable für Cart
+//hier leer, wird im loop gefüllt
+let allCartItems: Product[] = [];
 
 
 //& im Loop alle Produkte in die DOM schieben
@@ -104,6 +109,13 @@ function putDataIntoDom (products: Product[]) {
         buttonAddToCart.setAttribute("id", products[i].id.toString());
         buttonAddToCart.className = "bg-yellow-100 p-2 rounded-2xl";
         buttonAddToCart.textContent = "Add to cart";
+
+        //addToCart
+        //alle Produkte in einem Array speichern
+        buttonAddToCart.addEventListener("click", ()=> {
+            allCartItems.push(products[i]);
+            console.log(allCartItems);
+        })
 
          //hier pushe ich die Button-Elemente in das Array, dass ich vor der Schleife initialisiert habe
         allButtonAddToCart.push(buttonAddToCart);
@@ -213,6 +225,16 @@ if (productSection && productCategoryWoButton && shopProductData ) {
             productSection.innerHTML = "";
             putDataIntoDom(womensItems);
         };
+    });
+};
+
+
+
+//wieder alle Produkte
+if (productSection && productCategoryAllButton && shopProductData ) {
+    productCategoryAllButton.addEventListener("click", ()=> {
+        productSection.innerHTML = "";
+        putDataIntoDom(shopProductData);
     });
 };
 
