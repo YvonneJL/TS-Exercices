@@ -8,9 +8,9 @@ const productInput = document.querySelector<HTMLInputElement>("#search-input");
 const productButtonSearch = document.querySelector("#search-button");
 
 const productCategoryElButton = document.querySelector("#category-1");
-const productCategoryJeButton = document.querySelector("#category-1");
-const productCategoryMeButton = document.querySelector("#category-1");
-const productCategoryEWoButton = document.querySelector("#category-1");
+const productCategoryJeButton = document.querySelector("#category-2");
+const productCategoryMeButton = document.querySelector("#category-3");
+const productCategoryWoButton = document.querySelector("#category-4");
 
 
 
@@ -50,11 +50,22 @@ async function getShopProducts() {
 const shopProductData = await getShopProducts();
 
 
-if (shopProductData && productSection) {
 
-    //im Loop alle Produkte in die DOM 
-    for (let i = 0; i<= shopProductData.length -1; i++) {
+//hier speichere ich am Ende der Shcleife alle Button-Elemente, damit ich noch Eventlistener darauf setzen kann.
+//---ist das wirklich nötig? 
+//---oder würde ich die Funktion sowieso in der Schleife schreiben mit i, da die Funktion ja auch wieder dieselbe ist..
+//---ansonstena ußerhalb mit querySelectorAll? bzw. Schleife durchs Array aus Buttons
+let allButtonAddToCart: HTMLButtonElement[] = [];
 
+
+
+//& im Loop alle Produkte in die DOM schieben
+
+// Funktion definieren, die gewünschte Artikel in DOM pusht
+function putDataIntoDom (products: Product[]) {
+    if (shopProductData && productSection) {
+        for (let i = 0; i<= products.length -1; i++) {
+             //äußeren Container definieren, sodass ich auf flex kann und einheitliches Bild entsteht, da Bilder unterschiedlich groß
         const productContainerAußen = document.createElement("section");
         productSection.appendChild(productContainerAußen);
         productContainerAußen.className = "bg-white border border-yellow-100 rounded-xl p-3 flex flex-col justify-end"
@@ -62,41 +73,148 @@ if (shopProductData && productSection) {
         // Container definieren
         const productContainer = document.createElement("article");
         productContainerAußen.appendChild(productContainer);
-        
 
-        //img und Container dazu
+         //img und Container dazu
         const imgDivElement = document.createElement("div");
         const imgElement = document.createElement("img");
         productContainer.appendChild(imgDivElement);
         imgDivElement.appendChild(imgElement);
-        imgElement.src = shopProductData[i].image;
+        imgElement.src = products[i].image;
         imgElement.className = "w-1/2"
         imgDivElement.className = "flex justify-center mb-5"
 
-        //Produkttitel und Linie
+         //Produkttitel und Linie
         const titlePElement = document.createElement("p");
-        productContainer.appendChild(titlePElement);
-        titlePElement.textContent = shopProductData[i].title;
+    productContainer.appendChild(titlePElement);
+        titlePElement.textContent = products[i].title;
         titlePElement.className = "text-bold text-left mb-5 w-[90%] mx-auto";
         const lineDiv = document.createElement("div");
         productContainer.appendChild(lineDiv);
         lineDiv.className = "w-[90%] h-[1px] bg-gray-400 mx-auto mb-5";
 
-        //Preis und Button Teil
+         //Preis und Button Teil
         const preisContainer = document.createElement("article");
         productContainer.appendChild(preisContainer);
         preisContainer.className = "mb-5 flex justify-between items-center p-2 w-[90%] mx-auto";
         const pricePElement = document.createElement("p");
         preisContainer.appendChild(pricePElement);
-        pricePElement.textContent = `$ ${shopProductData[i].price.toString()}`;
+        pricePElement.textContent = `$ ${products[i].price.toString()}`;
         const buttonAddToCart = document.createElement("button");
         preisContainer.appendChild(buttonAddToCart);
-        buttonAddToCart.setAttribute("id", shopProductData[i].id.toString());
+        buttonAddToCart.setAttribute("id", products[i].id.toString());
         buttonAddToCart.className = "bg-yellow-100 p-2 rounded-2xl";
         buttonAddToCart.textContent = "Add to cart";
-    }; 
+
+         //hier pushe ich die Button-Elemente in das Array, dass ich vor der Schleife initialisiert habe
+        allButtonAddToCart.push(buttonAddToCart);
+        };
+    };
+};
+if (shopProductData) {
+    putDataIntoDom(shopProductData);
 };
 
+
+//Zugriff auf Alle Button-Elemente, die ich in Schleife definiert habe
+console.log(allButtonAddToCart);
+
+
+
+//& Suchfunktion nach Titel
+
+if (productInput && productButtonSearch && shopProductData && productSection) {
+    productButtonSearch.addEventListener("click", ()=> {
+
+        //trim() entfernt so Leerzeichen am Anfang und am Ende
+        const productValue = productInput.value.toLowerCase().trim();
+        productInput.value = "";
+        //wenn nichts ins Inputfeld eingegeben wurde
+        //return --> bricht dann ab
+        if (!productValue) {
+            return;
+        }
+        let searchResults = shopProductData.filter((product)=> {
+            return product.title.toLowerCase().includes(productValue)
+
+        });
+        console.log(searchResults);
+
+        productSection.innerHTML = "";
+        putDataIntoDom(searchResults);
+    });
+};
+
+
+
+//& Filterfunktion nach Kategorie
+
+
+//electronics
+if (productSection && productCategoryElButton && shopProductData ) {
+    productCategoryElButton.addEventListener("click", ()=> {
+
+        let electronicItems = shopProductData.filter((product)=> {
+            if (product.category.toLowerCase() === "electronics") {
+                return product;
+            };
+        }); 
+        if (electronicItems) {
+            productSection.innerHTML = "";
+            putDataIntoDom(electronicItems);
+        };
+    });
+};
+
+
+//jewelery
+if (productSection && productCategoryJeButton && shopProductData ) {
+    productCategoryJeButton.addEventListener("click", ()=> {
+
+        let jeweleryItems = shopProductData.filter((product)=> {
+            if (product.category.toLowerCase() === "jewelery") {
+                return product;
+            };
+        }); 
+        if (jeweleryItems) {
+            productSection.innerHTML = "";
+            putDataIntoDom(jeweleryItems);
+        };
+    });
+};
+
+
+//men's clothes
+if (productSection && productCategoryMeButton && shopProductData ) {
+    productCategoryMeButton.addEventListener("click", ()=> {
+
+        let mensItems = shopProductData.filter((product)=> {
+            if (product.category.toLowerCase() === "men's clothing") {
+                return product;
+            };
+        }); 
+        if (mensItems) {
+            productSection.innerHTML = "";
+            putDataIntoDom(mensItems);
+        };
+    });
+};
+
+
+//women's clothes
+if (productSection && productCategoryWoButton && shopProductData ) {
+    productCategoryWoButton.addEventListener("click", ()=> {
+
+        let womensItems = shopProductData.filter((product)=> {
+            if (product.category.toLowerCase() === "women's clothing") {
+                return product;
+            };
+        }); 
+        if (womensItems) {
+            productSection.innerHTML = "";
+            putDataIntoDom(womensItems);
+        };
+    });
+};
 
 
 
