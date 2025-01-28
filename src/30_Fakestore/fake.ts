@@ -13,6 +13,8 @@ const productCategoryMeButton = document.querySelector("#category-3");
 const productCategoryWoButton = document.querySelector("#category-4");
 const productCategoryAllButton = document.querySelector("#category-0");
 
+const headlineSectionElement = document.querySelector("#headline-section");
+
 
 
 //& Typ für die Daten bestimmen
@@ -64,11 +66,16 @@ let allButtonAddToCart: HTMLButtonElement[] = [];
 let allCartItems: Product[] = [];
 
 
+//Zähler für die Button-Klicks "ad to cart", sodass man darstellen kann wie viel items im Warenkorb liegen
+let counter = 0;
+
+
 //& im Loop alle Produkte in die DOM schieben
+
 
 // Funktion definieren, die gewünschte Artikel in DOM pusht
 function putDataIntoDom (products: Product[]) {
-    if (shopProductData && productSection) {
+    if (shopProductData && productSection && headlineSectionElement) {
         for (let i = 0; i<= products.length -1; i++) {
              //äußeren Container definieren, sodass ich auf flex kann und einheitliches Bild entsteht, da Bilder unterschiedlich groß
         const productContainerAußen = document.createElement("section");
@@ -109,12 +116,21 @@ function putDataIntoDom (products: Product[]) {
         buttonAddToCart.setAttribute("id", products[i].id.toString());
         buttonAddToCart.className = "bg-yellow-100 p-2 rounded-2xl";
         buttonAddToCart.textContent = "Add to cart";
+        
 
         //addToCart
         //alle Produkte in einem Array speichern
         buttonAddToCart.addEventListener("click", ()=> {
             allCartItems.push(products[i]);
             console.log(allCartItems);
+            //Zähler hochzählen, um Anzahl im Warenkorb darstellen zu lassen
+            counter ++
+            const itemsInCart = document.createElement("div");
+            headlineSectionElement.appendChild(itemsInCart);
+            itemsInCart.textContent = counter.toString();
+            itemsInCart.className = "w-7 h-7 bg-white rounded-full p-2 absolute right-8 top-24 flex items-center justify-center text-red-500"
+
+            console.log(counter);
         })
 
          //hier pushe ich die Button-Elemente in das Array, dass ich vor der Schleife initialisiert habe
