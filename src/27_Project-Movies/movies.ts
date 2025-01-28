@@ -1007,6 +1007,9 @@ const movies: [string, string, string, string, string[], string][] = [
 console.log(movies[0][0]);
 //Zugriff auf Array und dann erster Eintrag in Subarray
 
+// Array definieren, das die aktuellen Suchergebnisse speichert, sodass ich bei den Eventlistenern darauf zugreifen kann
+let currentMovies = [...movies];
+
 
 //& Elemente aus der DOM ziehen
 const inputElement = document.querySelector<HTMLInputElement>("#movie-search");
@@ -1017,6 +1020,8 @@ const yDownBtn = document.querySelector("#btn-ydown");
 const bestRateBtn = document.querySelector("#btn-best-rate");
 
 const movieSection = document.querySelector("#find");
+
+
 
 
 //& Funktion für das Schreiben der einzenen Filme in die DOM
@@ -1056,6 +1061,8 @@ putMoviesInDom(movies);
 
 //& Suche nach Inputfeld
 
+
+
 // mit .filter() gearbeitet, da .filter() dann die Arrays ausspuckt, die gesucht werden
 // mit .map() zB kommt nur der boolean von .includes() zurück
 if (searchBtn && inputElement && movieSection) {
@@ -1073,6 +1080,9 @@ if (searchBtn && inputElement && movieSection) {
             movieSection.textContent = "";
             
             putMoviesInDom(searchResults);
+
+            // wenn ich nach einem Begriff gesucht habe, wird hier das Ergebnis im Array gespeichert
+            currentMovies = searchResults;
         } else {
             console.log("no");
             movieSection.textContent = "";
@@ -1106,7 +1116,7 @@ if (yUpBtn && yDownBtn && bestRateBtn && movieSection) {
     yUpBtn.addEventListener("click", ()=> {
         //1. .sort() --> das kann ich direkt mit genau den Einträgen im Subarray, die ich brauche
         //ohne umständlich vorher alles in neuem Array zu speichern
-        const sortedUp = movies.slice().sort((a, b)=> Number(a[1])-Number(b[1]));
+        const sortedUp = currentMovies.slice().sort((a, b)=> Number(a[1])-Number(b[1]));
         movieSection.innerHTML = "";
 
         //hier schriebe ich alles nochmal in die DOM, wie global schon, nur mit der neuen Variablen (Array mit Subarrays), in der alles sortiert ist
@@ -1115,7 +1125,7 @@ if (yUpBtn && yDownBtn && bestRateBtn && movieSection) {
 
 
     yDownBtn.addEventListener("click", ()=> {
-        const sortedDown = movies.slice().sort((a, b)=> Number(b[1])-Number(a[1]));
+        const sortedDown = currentMovies.slice().sort((a, b)=> Number(b[1])-Number(a[1]));
         movieSection.innerHTML = "";
 
         putMoviesInDom(sortedDown);
@@ -1123,7 +1133,7 @@ if (yUpBtn && yDownBtn && bestRateBtn && movieSection) {
 
     
     bestRateBtn.addEventListener("click", ()=> {
-        const sortedBestRate = movies.slice().sort((a, b)=> Number(b[5])-Number(a[5]));
+        const sortedBestRate = currentMovies.slice().sort((a, b)=> Number(b[5])-Number(a[5]));
         movieSection.innerHTML = "";
 
         putMoviesInDom(sortedBestRate);
