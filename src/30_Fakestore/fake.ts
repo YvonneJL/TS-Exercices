@@ -80,7 +80,7 @@ function putDataIntoDom (products: Product[]) {
              //äußeren Container definieren, sodass ich auf flex kann und einheitliches Bild entsteht, da Bilder unterschiedlich groß
         const productContainerAußen = document.createElement("section");
         productSection.appendChild(productContainerAußen);
-        productContainerAußen.className = "bg-white border border-yellow-100 rounded-xl p-3 flex flex-col justify-end"
+        productContainerAußen.className = "bg-white border-2 border-yellow-200 p-3 flex flex-col justify-end"
 
         // Container definieren
         const productContainer = document.createElement("article");
@@ -114,7 +114,7 @@ function putDataIntoDom (products: Product[]) {
         const buttonAddToCart = document.createElement("button");
         preisContainer.appendChild(buttonAddToCart);
         buttonAddToCart.setAttribute("id", products[i].id.toString());
-        buttonAddToCart.className = "bg-yellow-100 p-2 rounded-2xl";
+        buttonAddToCart.className = "bg-yellow-200 p-2";
         buttonAddToCart.textContent = "Add to cart";
         
 
