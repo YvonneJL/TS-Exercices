@@ -67,6 +67,8 @@ while (arrayOfLuckyNumbers.length < 7) {
 //& ErrorHandling-TS-Level-2_2
 console.log("ErrorHandling-TS-Level-2_2");
 
+//! MIT CHATGPT GEMACHT
+
 //..Schreibe eine Funktion getCurrentPosition, die die Geolocation-API verwendet, um die aktuellen Koordinaten des Benutzers abzurufen.
 //..siehe https://www.w3schools.com/html/html5_geolocation.asp
 //..Verwende einen try-catch-Block um Fehler abgefangen werden, falls der Browser die Geolocation-API nicht unterstützt oder der Benutzer die Berechtigung zur Standortfreigabe verweigert.
@@ -75,12 +77,55 @@ console.log("ErrorHandling-TS-Level-2_2");
 //..Logge im [finally](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch?retiredLocale=de)-Block auf die Konsole “getCurrentPosition finished”
 
 
-// function getcurrentLocation() {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition();
-//     } else {
-//       throw new Error ("nenene")
-//     }
-//   }
+function getCurrentPosition() {
+    try {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, handleError);
+          } else {
+            throw new Error ("Geolocation wird in diesem Browser nicht unterstützt")
+          }
+    }
+    catch (error) {
+        window.alert(error)
+    } finally {
+        console.log("getCurrentPosition finished");
+    }
+     
+  }
   
- 
+  function showPosition(position) {
+    // Zeigt die Koordinaten in einem Bestätigungsdialog an
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    const message = `Breitengrad: ${lat}\nLängengrad: ${lon}`;
+
+    // Bestätigung mit den Koordinaten anzeigen
+    const userConfirmed = window.confirm("Die Koordinaten sind:\n" + message);
+    if (userConfirmed) {
+        console.log("Benutzer hat die Koordinaten bestätigt.");
+    } else {
+        console.log("Benutzer hat die Koordinaten abgelehnt.");
+    }
+}
+
+  function handleError(error) {
+    let errorMessage = "";
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            errorMessage = "Benutzer hat die Standortfreigabe verweigert.";
+            break;
+        case error.POSITION_UNAVAILABLE:
+            errorMessage = "Standortinformationen sind nicht verfügbar.";
+            break;
+        case error.TIMEOUT:
+            errorMessage = "Die Anfrage an den Standortservice hat zu lange gedauert.";
+            break;
+        case error.UNKNOWN_ERROR:
+            errorMessage = "Unbekannter Fehler.";
+            break;
+    }
+    // Fehler durch Standortfreigabe oder andere Probleme anzeigen
+    window.alert("Fehler: " + errorMessage);
+}
+
+getCurrentPosition();
