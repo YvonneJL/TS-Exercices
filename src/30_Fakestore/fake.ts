@@ -62,12 +62,9 @@ const shopProductData = await getShopProducts();
 let allButtonAddToCart: HTMLButtonElement[] = [];
 
 // Variable für Cart
-//hier leer, wird im loop gefüllt
-let allCartItems: Product[] = [];
+//entweder leer (ganz hinten) oder alles was im localStorage ist
+let allCartItems: Product[] = JSON.parse(localStorage.getItem("cart") ?? "[]");
 
-
-//Zähler für die Button-Klicks "ad to cart", sodass man darstellen kann wie viel items im Warenkorb liegen
-let counter = 0;
 
 
 //& im Loop alle Produkte in die DOM schieben
@@ -123,14 +120,14 @@ function putDataIntoDom (products: Product[]) {
         buttonAddToCart.addEventListener("click", ()=> {
             allCartItems.push(products[i]);
             console.log(allCartItems);
-            //Zähler hochzählen, um Anzahl im Warenkorb darstellen zu lassen
-            counter ++
+            //im localStorage speichern
+            localStorage.setItem("cart", JSON.stringify(allCartItems))
+
             const itemsInCart = document.createElement("div");
             headlineSectionElement.appendChild(itemsInCart);
-            itemsInCart.textContent = counter.toString();
-            itemsInCart.className = "w-7 h-7 bg-white rounded-full p-2 absolute right-8 top-24 flex items-center justify-center text-red-500"
-
-            console.log(counter);
+            //als Zähler wird jetzt die Länge des Array genutzt
+            itemsInCart.textContent = allCartItems.length.toString();
+            itemsInCart.className = "w-7 h-7 bg-white rounded-full p-2 absolute right-8 top-21 flex items-center justify-center text-red-500"
         })
 
          //hier pushe ich die Button-Elemente in das Array, dass ich vor der Schleife initialisiert habe
@@ -256,3 +253,6 @@ if (productSection && productCategoryAllButton && shopProductData ) {
 
 
 
+//!Responsiv gestalten
+//!Button, um Warenkorb zu leeren (clear localStorage)
+//!Design?
