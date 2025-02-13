@@ -1,7 +1,8 @@
 //& OOP-Class-TS-Level-1_1
 
 import Actor from "./Actor";
-import Car from "./Car";
+import { Car } from "./Car";
+import { CarType } from "./Car";
 import Driver from "./Driver";
 import Episode from "./Eisode";
 import IceCreamFlavor from "./IceCreamFlavor";
@@ -57,6 +58,31 @@ console.log(iceCreamFlavors);
 iceCreamFlavors.forEach((element)=> {
     element.showNameOfIcecream()
 })
+
+
+
+
+//& OOP-Class-TS-Level-1_12
+
+//..Wir bauen auf der Klasse IceCreamFlavors auf
+//..Die Klasse soll drei Methoden bekommen
+    //..getTotalPrice(numberOfScoops: number)
+    //..gibt den Gesamtpreis anhand der übergebenen Anzahl an Eiskugeln auf der Konsole aus
+
+    console.log(mangoNougat.getTotalPrice(3));
+
+    //..printInfo()
+    //..gibt z. B. Folgendes auf der Konsole aus
+    
+    vanilla.printInfo();
+    mangoNougat.printInfo();
+    
+    //..getLengthOfDescription()
+    //..gibt die Textlänge von description aus oder 0, wenn die Eigenschaft nicht gesetzt ist
+
+    //mangoNougat.getLengthOfDescription();
+    chocolate.getLengthOfDescription();
+
 
 
 
@@ -142,17 +168,57 @@ console.log(classOne);
 //..Zu guter Letzt sollst du in der Datei app.ts, mehrere Autos und Fahrer erstellen und miteinander verknüpfen
 
 
-const carOne = new Car("Seat Ibiza", 2005, 120)
-const carTwo = new Car("VW Golf", 1995, 120)
-const carThree = new Car("VW T1", 1980, 80)
+const carOne = new Car("Seat Ibiza", 2005, 120, CarType.Hatchback)
+const carTwo = new Car("VW Golf", 1995, 199, CarType.Convertible)
+const carThree = new Car("VW T1", 1980, 70, CarType.Unknown)
 
 
-const driverOne = new Driver("Yvi", "Lodi", 36, carOne)
+const driverOne = new Driver("Yvi", "Lodi", 36, carOne, 2008)
 console.log(driverOne);
-const driverTwo = new Driver("Bast", "K", 30, carTwo)
+const driverTwo = new Driver("Bast", "K", 30, carTwo, 2014)
 console.log(driverTwo);
-const driverThree = new Driver("Lotte", "", 30, carThree)
+const driverThree = new Driver("Lotte", "", 30, carThree, 2014)
 console.log(driverThree);
+
+
+
+
+//& OOP-Class-TS-Level-1_13
+
+//..Wir bauen auf den Klassen Car und Driver auf
+//..in der Klasse Car
+    //..soll constructionYear nur über den Konstruktor gesetzt werden können 
+    //..Wert ist nur über einen Getter (get-Methode) abrufbar
+
+    console.log(carOne.constructionYear);
+    console.log(carTwo.constructionYear);
+    console.log(carThree.constructionYear);
+
+    //..soll es eine Methode getSpeedInfo(): string geben mit dieser Logik geben
+    //..currentSpeed ≤ 40 → Rückgabewert ‘Driving slowly’
+    //..currentSpeed > 40 und ≤ 70 → Rückgabewert ‘Driving normally’
+    //..currentSpeed > 70 und ≤ 120 → Rückgabewert ‘Driving fast’
+    //..currentSpeed > 120 und ≤ 190 → Rückgabewert ‘Driving really fast’
+    //..currentSpeed> 190 → ‘WTF’
+
+        console.log(carOne.getSpeedInfo());
+        console.log(carTwo.getSpeedInfo());
+        console.log(carThree.getSpeedInfo());
+
+
+//..Lege in einer neuen Datei ein Enum namens CarType an
+//..Werte → Unknown, Sedan, SUV, Coupe, Convertible, Hatchback, Truck   
+//..erweitere die Klasse Car um eine neue Eigenschaft carType: CarType
+
+//..in der Klasse Driver
+    //..soll es eine weitere Eigenschaft licenseFromYear: number geben, die nur über den Konstruktor gesetzt werden kann
+    //..Wert ist nur über einen Getter (get-Methode) abrufbar
+    //..soll es eine Methode getCarType(): CarType geben, die den CarType des aktuellen Autos als Text ausgibt
+
+    console.log(driverOne.getCarType());
+    console.log(driverTwo.getCarType());
+    console.log(driverThree.getCarType());
+
 
 
 //& OOP-Class-TS-Level-3_1
@@ -227,32 +293,29 @@ function printSeriesInfo (series: TVShow) {
         episode.actors.forEach((actor)=> {
             console.log(`${actor.firstName} ${actor.lastName}: -Birthday: ${actor.birthday}, -Gender: ${actor.gender}`);
         })
-        console.log(episode.actors);
     });
+
+    //! Hier um Dopplung zu vermeiden, von Julia
+     // Array, der die Schauspieler nur einzeln aufführt
+  const allActors: Actor[] = [];
+  // Dopplung von Schauspielern vermeiden
+  series.episodes.flatMap((episode) =>
+    episode.actors.forEach((actor) => {
+      if (
+        !allActors.some(
+          (a) =>
+            a.firstName === actor.firstName && a.lastName === actor.lastName,
+        )
+      )
+        allActors.push(actor);
+    }),
+  );
+  console.log(allActors);
 }
 
 printSeriesInfo(tvShow1)
 
 
-
-// ```tsx
-// Title: Breaking Bad
-// Description: A high school chemistry teacher turned methamphetamine manufacturer
-// Start Year: 2008
-// End Year: 2013
-// Number of Episodes: 2
-
-// Actors:
-// - Bryan Cranston
-//   - Birthday: 1956-03-07
-//   - Gender: Male
-// - Aaron Paul
-//   - Birthday: 1979-08-27
-//   - Gender: Male
-// - Anna Gunn
-//   - Birthday: 1968-04-11
-//   - Gender: Female
-// ```
 //..Bei Actors sollen alle Darsteller:innen aus allen Episoden ausgegeben werden.
 
 
