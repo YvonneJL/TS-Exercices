@@ -114,18 +114,22 @@ iceCreamFlavors.forEach((flavor) => {
     popularDiv.className = "invisible"
   } 
   iceHeadline.textContent = flavor.name;
-  icePrice.textContent = flavor.price.toString();
-  iceAmountScoops.textContent = `Scoops: ${scoopAmount} `
-  icePriceTotal.textContent = `${scoopAmount * flavor.price}` 
+  icePrice.textContent = `Price: ${flavor.price.toString()}`;
+  iceAmountScoops.textContent = `Amount of Scoops: ${scoopAmount} `
+  icePriceTotal.textContent = `Total price: ${scoopAmount * flavor.price}` 
   iceButtonAdd.textContent = "+1";
 
-  iceDiv.className = "bg-red-200 text-center"
-  iceButtonAdd.className = "bg-red-300 py-1 px-5"
+  iceDiv.className = "bg-red-200 text-center p-5 rounded-lg m-5"
+  iceHeadline.className = "font-bold text-red-300 text-xl my-3"
+  icePrice.className = "text-yellow-50"
+  iceAmountScoops.className = "text-yellow-50"
+  icePriceTotal.className = "text-yellow-50"
+  iceButtonAdd.className = "bg-red-300 py-1 px-5 rounded-lg mt-5 text-yellow-100"
 
   iceButtonAdd.addEventListener("click", ()=> {
     scoopAmount++
-    iceAmountScoops.textContent = `Scoops: ${scoopAmount} `
-    icePriceTotal.textContent = `${scoopAmount * flavor.price}` 
+    iceAmountScoops.textContent = `Amount of Scoops: ${scoopAmount} `
+    icePriceTotal.textContent = `Total price: ${scoopAmount * flavor.price}` 
     console.log(scoopAmount);
   })
 });
